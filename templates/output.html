@@ -3,27 +3,40 @@
  <head>
    <meta charset="utf-8" />
    <title>Syntax_BeautifierBLR 1.0</title>
-   <meta name="author" content="" />
-   <meta name="description" content="" />
+   <meta name="author" content="kawesolo" />
+   <meta name="description" content="Tool for the Amazon BLR node." />
    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+   <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
- </head>
+<script>
+    function myFunction() {
+  var copyText = document.getElementById("output");
+  copyText.select();
+  navigator.clipboard.writeText(copyText.value);
+}
+</script>
+</head>
 <body>
 <header><center>
-    <h1>Syntax_BeautifierBLR 1.0</h1>
+    <h2>Syntax_BeautifierBLR 1.0</h2>
     <h4>After changes:</h4>
     </center></h1>
 </header>
-<center><textarea rows="10" cols="80">
+<center><textarea rows="10" cols="80" disabled id="output">
 {% for item in data %}
 {{ item }}
 {% endfor %}
 </textarea><br>
-    <form action="/">
-        <input type="submit" value="Reset" class="btn btn-error"/>
-</form><br>
+<table>
+<tbody>
+<tr>
+<td><button onclick="myFunction()" class="btn btn-success">Copy text</button></td>
+<form action="/"><td><input type="submit" value="Reset" class="btn btn-error"/></td></form>
+</tr>
+</tbody>
+</table>
+<br>
 For further ideas or encountered bugs contact me at
 <a href="mailto:kawesolo@amazon.pl" target="_blank"> kawesolo@amazon.pl</a>
 </center>
