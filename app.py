@@ -20,11 +20,11 @@ def my_form_post():
             divider_idx = (line[1].find(':'))
             if line[1][0:divider_idx].count('|') < 2:
                 if line[1].count(':') < 2:
-                    syntax_list[line[0]] = line[1].replace('AttributesContain',
-                                                      'ISC')
+                    syntax_list[line[0]] = line[1].replace(line[1][0:divider_idx + 1],
+                                                      'ISC[')
                 if line[1].count(':') > 2:
-                    syntax_list[line[0]] = line[1].replace('AttributesContain',
-                                                      'SpecialKeyword')
+                    syntax_list[line[0]] = line[1].replace(line[1][0:divider_idx + 1],
+                                                      'SpecialKeyword[')
     for val in syntax_list:
-        output_list.append(re.sub(r'(?<=:)[^<:]+(?=:?:)', 'any', val))
+        output_list.append(re.sub(r'(?<=\:)[0-9]+(?=\:)', 'any', val))
     return render_template('output.html', data=output_list).replace('\n', '')
