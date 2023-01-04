@@ -20,9 +20,10 @@ def my_form_post():
             divider_idx = (line[1].find(':'))
             if line[1][0:divider_idx].count('|') < 2:
                 if line[1].count(':') < 2:
-                    syntax_list[line[0]] = \
-                        line[1].replace(line[1][0:divider_idx + 1], '').\
-                            replace(line[1][-2], '')
+                    syntax_list[line[0]] = line[1].replace(
+                        line[1][0:divider_idx + 1], '')
+                    last_position = syntax_list[line[0]].rfind(']')
+                    syntax_list[line[0]] = syntax_list[line[0]][:last_position]
                 if line[1].count(':') > 2:
                     syntax_list[line[0]] = \
                         line[1].replace(line[1][0:divider_idx + 1],
