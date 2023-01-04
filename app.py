@@ -23,11 +23,15 @@ def my_form_post():
                     syntax_list[line[0]] = line[1].replace(
                         line[1][0:divider_idx + 1], '')
                     last_position = syntax_list[line[0]].rfind(']')
-                    syntax_list[line[0]] = syntax_list[line[0]][:last_position]
+                    syntax_list[line[0]] = syntax_list[line[0]][0:last_position] + \
+                                           syntax_list[line[0]][last_position].\
+                                               replace(']', ' newlinehere ')
+                    print(syntax_list[line[0]])
                 if line[1].count(':') > 2:
                     syntax_list[line[0]] = \
                         line[1].replace(line[1][0:divider_idx + 1],
                                                       'SpecialKeyword[')
     for val in syntax_list:
         output_list.append(re.sub(r'(?<=\:)[0-9]+(?=\:)', 'any', val))
-    return render_template('output.html', data=output_list).replace('\n', '')
+    return render_template('output.html', data=output_list).replace('\n', '')\
+        .replace(' newlinehere ', '\n')
